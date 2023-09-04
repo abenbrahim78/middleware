@@ -1,0 +1,42 @@
+---
+- name: Create a Deployment with image hello-world
+  kubernetes.core.k8s:
+    definition:
+      kind: Deployment
+      apiVersion: apps/v1
+      metadata:
+        name: "{{ ansible_operator_meta.name }}-helloworld"
+        namespace: "{{ ansible_operator_meta.namespace }}"
+      spec:
+        replicas: "{{ size }}"
+        selector:
+          matchLabels:
+            app: helloworld
+        template:
+          metadata:
+            labels:
+              app: helloworld
+          spec:
+            containers:
+              - name: helloworld
+                image: "nginx"
+- name: Create frontend service
+  kubernetes.core.k8s:
+    definition:
+      kind: Service
+      apiVersion: v1
+      metadata:
+        name: frontend-service
+        namespace: '{{ ansible_operator_meta.namespace }}'
+        labels:
+          app: frontend
+      spec:
+        type: NodePort
+        ports:
+          - port: 80
+            targetPort: 80
+            nodePort: 30686
+            protocol: TCP
+        selector:
+          app: frontend
+

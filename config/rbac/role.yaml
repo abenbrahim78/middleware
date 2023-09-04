@@ -37,4 +37,21 @@ rules:
       - patch
       - update
       - watch
+  ##
+  ## Rules for middleware.test.me/v1alpha1, Kind: MidwSQL
+  ##
+  - apiGroups:
+      - middleware.test.me
+    resources:
+      - midwsqls
+      - midwsqls/status
+      - midwsqls/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
 #+kubebuilder:scaffold:rules

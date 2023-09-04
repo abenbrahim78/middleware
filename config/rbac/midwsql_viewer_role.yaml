@@ -1,0 +1,27 @@
+# permissions for end users to view midwsqls.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: midwsql-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: middleware
+    app.kubernetes.io/part-of: middleware
+    app.kubernetes.io/managed-by: kustomize
+  name: midwsql-viewer-role
+rules:
+- apiGroups:
+  - middleware.test.me
+  resources:
+  - midwsqls
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - middleware.test.me
+  resources:
+  - midwsqls/status
+  verbs:
+  - get

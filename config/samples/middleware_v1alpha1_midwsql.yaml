@@ -1,0 +1,12 @@
+apiVersion: middleware.test.me/v1alpha1
+kind: MidwSQL
+metadata:
+  labels:
+    app.kubernetes.io/name: midwsql
+    app.kubernetes.io/instance: midwsql-sample
+    app.kubernetes.io/part-of: middleware
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: middleware
+  name: midwsql-sample
+spec:
+  # TODO(user): Add fields here

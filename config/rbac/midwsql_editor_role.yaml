@@ -1,0 +1,31 @@
+# permissions for end users to edit midwsqls.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: midwsql-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: middleware
+    app.kubernetes.io/part-of: middleware
+    app.kubernetes.io/managed-by: kustomize
+  name: midwsql-editor-role
+rules:
+- apiGroups:
+  - middleware.test.me
+  resources:
+  - midwsqls
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - middleware.test.me
+  resources:
+  - midwsqls/status
+  verbs:
+  - get
